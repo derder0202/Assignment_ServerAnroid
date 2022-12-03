@@ -110,23 +110,36 @@ const imageController = {
         let page = req.params.page || 1;
         const perPage = 4;
         DetailImage.find()
-            .skip(perPage*page - page)
+            .skip(perPage*page - perPage)
             .limit(perPage)
             .exec((err,imgs) =>{
                 DetailImage.countDocuments((err,count) => {
                     if (err) return res.status(500).json(err);
-                    res.render('listImgByPage',{data: imgs,page: parseInt(page)+1});
+                    res.render('listImgByPage',{data: imgs,page: parseInt(page)});
                 })
             })
     },
     getDataImageByPage: async (req,res) => {
         try{
-            const listImage = await DetailImage.find()
-            res.status(200).json(listImage)
+            let page = req.params.page || 1;
+            const perPage = 12;
+            DetailImage.find()
+                .skip(perPage*page - perPage)
+                .limit(perPage)
+                .exec((err,imgs) =>{
+                    DetailImage.countDocuments((err,count) => {
+                        if (err) return res.status(500).json(err);
+                        res.status(200).json(imgs)
+                    })
+                })
         } catch (e) {
             res.status(500).json(e);
         }
 
+    },
+    getCountDocument: async (req,res) => {
+        const length = await DetailImage.countDocuments()
+        res.status(200).json(length)
     }
 }
 

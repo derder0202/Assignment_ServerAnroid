@@ -10,6 +10,8 @@ router.get('/', async function(req, res, next) {
     //res.status(200).json(listImage)
 });
 
+router.get('/length',imageController.getCountDocument)
+
 //Get An Image
 router.get('/file/:imageName',imageController.getAnImage)
 
@@ -18,6 +20,8 @@ router.get('/delete/:id',imageController.deleteAnImage)
 //update an image
 router.get('/updatePage/:id',imageController.updatePage)
 router.post('/update/:id',imageController.updateAnImage)
+
+
 router.get('/:page',imageController.getImageByPage)
 router.get('/page/:page',imageController.getDataImageByPage)
 

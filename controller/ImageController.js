@@ -48,14 +48,14 @@ const imageController = {
                     // An unknown error occurred when uploading.
                 }
 
-                url = `${req.protocol + '://' + req.get('host')}/listImage/file/${req.file.filename}`
+                url = `${req.protocol + '://' + '192.168.0.215:3000'}/listImage/file/${req.file.filename}`
                 sizeOf( './uploads/'+ req.file.filename, function (err, dimensions) {
                     console.log(dimensions.width, dimensions.height);
                     sharp(req.file.path).resize(Math.round(dimensions.width/2), Math.round(dimensions.height/2)).toFile('./uploads/'+ 'sd-'+req.file.filename, function(err) {
                         if (err) {
                             console.error('sharp>>>', err)
                         }
-                        sdUrl= `${req.protocol + '://' + req.get('host')}/listImage/file/sd-${req.file.filename}`
+                        sdUrl= `${req.protocol + '://' + '192.168.0.215:3000'}/listImage/file/sd-${req.file.filename}`
                         const newImage = new DetailImage({url,sdUrl,...req.body})
                         newImage.save()
                         res.redirect('/addImage')
@@ -80,7 +80,7 @@ const imageController = {
         try{
             await DetailImage.findByIdAndDelete(req.params.id)
             //res.status(200).json("deleted")
-            res.redirect('/listImage/0')
+            res.redirect('/listImage/1')
             alert("Deleted")
         }catch (e){
             res.status(500).json(e)
@@ -101,7 +101,7 @@ const imageController = {
                 }
             })
             //res.status(200).json("updated an image successfully")
-            res.redirect('/listImage/0')
+            res.redirect('/listImage/1')
             alert("Updated")
         } catch (e) {
             res.status(500).json(e);

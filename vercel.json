@@ -2,9 +2,9 @@
   "version": 2,
   "name": "assignment-server-anroid",
   "builds": [
-    { "src": "app.js", "use": "@vercel/node" }
+    { "src": "./bin/www.js", "use": "@vercel/node" }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "/app.js" }
+    { "src": "/(.*)", "dest": "./bin/www.js" }
   ]
 }

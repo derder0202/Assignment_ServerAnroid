@@ -1,0 +1,14 @@
+        <li class="text-center">
+            <img src='<%=data[i].url%>'> <br>
+            <span class="h5 mb-0 font-weight-bold text-gray-800">Tiêu đề: <%=data[i].title%></span> <br>
+            <span class="font-weight-bold text-gray-900">id: <%=data[i]._id%></span>
+            <div class="font-weight-bold text-gray-900">Mô tả: <%=data[i].description%></div>
+            <div class="font-weight-bold text-gray-900">Ngày tạo: <%=data[i].date%></div>
+            <a href="<%=data[i].url%>" class="font-weight-bold text-gray-900">Url: <%=data[i].url%></a>
+            <a href="/listImage/delete/<%=data[i]._id%>" class="btn btn-primary btn-user btn-block flex-wrap">
+                Xóa
+            </a>
+            <a href="/listImage/updatePage/<%=data[i]._id%>" class="btn btn-primary btn-user btn-block flex-wrap">
+                Sửa
+            </a>
+        </li> <br>

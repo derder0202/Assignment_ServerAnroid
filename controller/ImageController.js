@@ -55,15 +55,13 @@ const imageController = {
                         if (err) {
                             console.error('sharp>>>', err)
                         }
-                        sdUrl= `${req.protocol + '://' + '192.168.0.215:3000'}/listImage/file/sd-${req.file.filename}`
+                        sdUrl= `${req.protocol}://${req.get('host')}/listImage/file/sd-${req.file.filename}`
                         const newImage = new DetailImage({url,sdUrl,...req.body})
                         newImage.save()
                         res.redirect('/addImage')
                         alert("Thêm thành công")
                     })
                 });
-
-
             })
         }catch (e){
             res.status(500).json(e)
